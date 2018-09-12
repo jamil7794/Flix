@@ -8,13 +8,16 @@
 
 import UIKit
 import AlamofireImage
-class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     let alertController = UIAlertController(title: "No Internet Connection", message: "Connect to the internet", preferredStyle: .alert)
     
     var movies: [[String: Any]] = []
+    var data = [String]()
+    
     var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
@@ -31,7 +34,7 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         refreshControl.addTarget(self, action: #selector(NowPlayingVC.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
-        tableView.delegate = self
+        searchBar.delegate = self
         fetchMovies()
     }
     
@@ -54,12 +57,13 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 }
             }else if let data = data{
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let movies = dataDictionary["results"] as! [[String: Any]]//array of dictionary
+                let movies = dataDictionary["results"] as! [[String: Any]] //array of dictionary
                 self.movies = movies
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
-            }
+                }
+            
         }
         
         task.resume()
@@ -74,6 +78,7 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let movie = movies[indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
+        data.append(title)
         
         cell.titleLbl.text = title
         cell.overviewLbl.text = overview
@@ -84,6 +89,16 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let posterURL = URL(string: baseUrlString + posterPathString)!
         cell.postImage.af_setImage(withURL: posterURL)
         return cell
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        filteredData = searchText.isEmpty ? movies : movies.filter { (item: String,: Any) -> Bool in
+//             If dataItem matches the searchText, return true to include it
+//            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+//        }
+        
+        
+        self.tableView.reloadData()
     }
 }
 

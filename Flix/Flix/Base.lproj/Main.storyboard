@@ -22,7 +22,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nn5-xY-aT5">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="ais-4b-Dfv">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Movies..." id="ais-4b-Dfv">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -96,6 +96,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="nEN-Ow-FCF" id="lNz-6w-YSq"/>
+                        <outlet property="searchBar" destination="ais-4b-Dfv" id="SNb-PA-oJM"/>
                         <outlet property="tableView" destination="nn5-xY-aT5" id="hoo-MI-Phb"/>
                     </connections>
                 </viewController>
