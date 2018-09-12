@@ -11,12 +11,21 @@ import AlamofireImage
 class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    let alertController = UIAlertController(title: "No Internet Connection", message: "Connect to the internet", preferredStyle: .alert)
     
     var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activityIndicator.startAnimating()
+        
+        
+        let OkAction = UIAlertAction(title: "Try Again", style: .default) { (action) in
+            self.fetchMovies()
+        }
+        alertController.addAction(OkAction)
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(NowPlayingVC.didPullToRefresh(_:)), for: .valueChanged)
@@ -41,12 +50,15 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             // This will run when the network request returns
             if let error = error {
                 print(error.localizedDescription)
+                UIApplication.shared.keyWindow?.rootViewController?.present(self.alertController, animated: true){
+                }
             }else if let data = data{
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movies = dataDictionary["results"] as! [[String: Any]]//array of dictionary
                 self.movies = movies
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
+                self.activityIndicator.stopAnimating()
             }
         }
         

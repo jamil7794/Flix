@@ -22,9 +22,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nn5-xY-aT5">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="ais-4b-Dfv">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="141" id="TNX-rV-cWJ" customClass="MovieCell" customModule="Flix" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="141"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="141"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TNX-rV-cWJ" id="gRR-qY-ZyN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="140.5"/>
@@ -73,10 +78,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nEN-Ow-FCF">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nEN-Ow-FCF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6FB-s2-icr"/>
                             <constraint firstItem="nn5-xY-aT5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Hef-nh-deI"/>
+                            <constraint firstItem="nEN-Ow-FCF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="OcY-fJ-Hxg"/>
                             <constraint firstItem="nn5-xY-aT5" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="SbU-Yf-IuA"/>
                             <constraint firstItem="nn5-xY-aT5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="j3j-3k-jgh"/>
                             <constraint firstItem="nn5-xY-aT5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ka1-0l-MgO"/>
@@ -84,6 +95,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="nEN-Ow-FCF" id="lNz-6w-YSq"/>
                         <outlet property="tableView" destination="nn5-xY-aT5" id="hoo-MI-Phb"/>
                     </connections>
                 </viewController>
