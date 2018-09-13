@@ -32,7 +32,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 2.
 
 ## Video Walkthrough
-/Users/jamiljalal/Documents/Flix/Flix/Flix/FlixMovie.gif
+https://github.com/jamil7794/Flix/blob/master/Flix/Flix/FlixMovie.gif
 Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
