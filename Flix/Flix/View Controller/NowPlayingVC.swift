@@ -16,7 +16,7 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     let alertController = UIAlertController(title: "No Internet Connection", message: "Connect to the internet", preferredStyle: .alert)
     
     var movies: [[String: Any]] = []
-    var data = [String]()
+    var data : [[String: Any]] = []
     
     var refreshControl: UIRefreshControl!
     
@@ -57,8 +57,9 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 }
             }else if let data = data{
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let movies = dataDictionary["results"] as! [[String: Any]] //array of dictionary
+                let movies = dataDictionary["results"] as! [[String: Any]] //array of dictionary, whole set
                 self.movies = movies
+                self.data = self.movies
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
@@ -68,7 +69,7 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         task.resume()
     }
-
+    //maav7779
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
@@ -76,9 +77,9 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieCell
         let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        data.append(title)
+        let title = movie["title"] as! String //each
+        let overview = movie["overview"] as! String // each
+        
         
         cell.titleLbl.text = title
         cell.overviewLbl.text = overview
@@ -97,8 +98,18 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 //            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
 //        }
         
-        
+        movies = searchText.isEmpty ? data : data.filter { ($0["title"] as! String).lowercased().contains(searchBar.text!.lowercased()) }
+        // if the search text is empty then return all the data (data). if they are not emepty then return filter the data (data.filter) and $0["title"] <- which is the title of the search. Match the $0["title"] with some of the data.filter
         self.tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell){
+            let movie = movies[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
+        }
     }
 }
 
