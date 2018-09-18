@@ -17,17 +17,17 @@ The following **stretch** features are implemented:
 - [x] In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer (+3pts)
 - [x] Customize the navigation bar (+1pt)
 - [x] List in any optionals you didn't finish from last week (+1-3pts)
-- ...
+- Implemented the search Bar which I didn't finish last week.
 - ...
 
 The following **additional** features are implemented:
 
-- [ x List anything else that you can get done to improve the app functionality!
+- [x] List anything else that you can get done to improve the app functionality!
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. I'd like to add a close function on the web
+2. I'd like the user to click on the image to view The youtube URL
 
 ## Video Walkthrough
 
@@ -44,7 +44,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [2018] [name of copyright owner]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
