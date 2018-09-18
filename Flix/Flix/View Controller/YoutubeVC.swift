@@ -12,7 +12,7 @@ import WebKit
 class YoutubeVC: UIViewController, WKUIDelegate, WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
-    public var id: CFNumber?
+    
     var videos: [[String: Any]]!
     
     @IBAction func close(_ sender: Any) {
