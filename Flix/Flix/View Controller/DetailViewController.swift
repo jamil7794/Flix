@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let movie = movie {
             titleLbl.text = movie["title"] as? String
             releaseDateLbl.text = movie["release_date"] as? String

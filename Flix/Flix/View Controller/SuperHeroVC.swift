@@ -12,13 +12,19 @@ class SuperHeroVC: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var movies: [[String: Any]] = []
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(SuperHeroVC.didPulltoRefresh), for: .valueChanged)
+        collectionView.insertSubview(refreshControl, at: 0)
         fetchMovies()
     }
-
+    @objc func didPulltoRefresh(_ refreshControl: UIRefreshControl){
+        fetchMovies()
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
@@ -37,7 +43,7 @@ class SuperHeroVC: UIViewController, UICollectionViewDataSource {
     
     func fetchMovies(){
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         
@@ -52,6 +58,7 @@ class SuperHeroVC: UIViewController, UICollectionViewDataSource {
                 let movies = dataDictionary["results"] as! [[String: Any]] //array of dictionary, whole set
                 self.movies = movies
                 self.collectionView.reloadData()
+                self.refreshControl.endRefreshing()
                 //self.activityIndicator.stopAnimating()
             }
             
@@ -63,6 +70,15 @@ class SuperHeroVC: UIViewController, UICollectionViewDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UICollectionViewCell
+        if let indexPath = collectionView.indexPath(for: cell){
+            let movie = movies[indexPath.row]
+            let detailViewController2 = segue.destination as! DetailVC2
+            detailViewController2.movie = movie
+        }
     }
 
 }
