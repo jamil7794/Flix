@@ -93,11 +93,6 @@ class NowPlayingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        filteredData = searchText.isEmpty ? movies : movies.filter { (item: String,: Any) -> Bool in
-//             If dataItem matches the searchText, return true to include it
-//            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-//        }
-        
         movies = searchText.isEmpty ? data : data.filter { ($0["title"] as! String).lowercased().contains(searchBar.text!.lowercased()) }
         // if the search text is empty then return all the data (data). if they are not emepty then return filter the data (data.filter) and $0["title"] <- which is the title of the search. Match the $0["title"] with some of the data.filter
         self.tableView.reloadData()

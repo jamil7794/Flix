@@ -13,6 +13,7 @@ class YoutubeVC: UIViewController, WKUIDelegate, WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     public var id: CFNumber?
+    var videos: [[String: Any]]!
     
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -29,7 +30,9 @@ class YoutubeVC: UIViewController, WKUIDelegate, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let url1 = "https://www.youtube.com/watch?v="
+        let data = videos[0]
+        let key = data["key"] as! String
+        let url1 = "https://www.youtube.com/watch?v=\(key)"
         let url2 = (String)();
         let url = url1 + url2
         let myURL = URL(string: url)
