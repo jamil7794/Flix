@@ -1,40 +1,36 @@
-# Project 2 - *Flickr*
+# Lab 3 - *Flix*
 
 **Name of your app** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **20** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
-The following **required** functionality is completed:
+The following **required** user stories are complete:
 
-- [x] User can tap a cell to see a detail view (+5pts)
-- [x] User can tap a tab bar button to view a grid layout of Movie Posters using a CollectionView (+5pts)
+- The following screens use AutoLayout to adapt to various orientations and screen sizes
+   - [x] Movie feed view (+3pt)
+   - [x] Detail view (+2pt)
 
-The following **stretch** features are implemented:
+The following **stretch** user stories are implemented:
 
-- [x] User can tap a poster in the collection view to see a detail screen of that movie (+3pts)
-- [x] In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer (+3pts)
-- [x] Customize the navigation bar (+1pt)
-- [x] List in any optionals you didn't finish from last week (+1-3pts)
-- Implemented the search Bar which I didn't finish last week.
-- ...
+- [x] Dynamic Height Cells (+1)
+- [x] Collection View AutoLayout (+2)
 
-The following **additional** features are implemented:
+The following **additional** user stories are implemented:
 
-- [x] List anything else that you can get done to improve the app functionality!
+- [x] List anything else that you can get done to improve the app functionality! (+1-3pts)
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. I'd like to add a close function on the web
-2. I'd like the user to click on the image to view The youtube URL
+1. I'd get a UIView to make an extra room for movie Description textfield
+2. I'd make another View Controller to purchase the move ticket
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/jamil7794/Flix/blob/master/Flix/TumblrMovie1_03.gif' />
-<img src='https://github.com/jamil7794/Flix/blob/master/Flix/TumblrMovie1_04.gif' />
+<img src='https://github.com/jamil7794/Flix/blob/master/Flix/FlixMovie.gif' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -44,16 +40,16 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-Copyright [2018] [Jamil Jalal]
+    Copyright [2018] [Jamil Jalal]
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
